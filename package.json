@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/kiwi-ui/test-skill-frontend-arkatama",
+  "homepage": "https://kiwi-ui.github.io/test-skill-frontend-arkatama",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
