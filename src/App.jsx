@@ -1,31 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const onSubmit = () => {
+    console.log('halo')
+  }
 
   return (
     <>
-      <div className="">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-          <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <main className="d-flex justify-content-center flex-column vw-100 vh-100 align-items-center pt-3 pt-lg-5">
+        <form className="h-75 d-flex justify-content-center flex-column" onSubmit={onSubmit}>
+          <div className="mb-4">
+            <label htmlFor="name" className="form-label fsemibold">Nama</label>
+            <input type="text" className="form-control" id="name" autoComplete="name" required />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="email" className="form-label fsemibold">Email</label>
+            <input type="email" className="form-control" id="email" autoComplete="email" required />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="asalInstansi" className="form-label fsemibold">Asal Instansi</label>
+            <input type="text" className="form-control" id="asalInstansi" autoComplete="asal-instansi" required />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="testimoni" className="form-label fsemibold">Testimoni</label>
+            <textarea className="form-control" id="testimoni" autoComplete="testimoni" required></textarea>
+          </div>
+
+          <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
+      </main>
     </>
-  )
+  );
 }
 
 export default App
