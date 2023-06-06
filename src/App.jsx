@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+
 function App() {
   const [testimonials, setTestimonials] = useState([]);
   const [formData, setFormData] = useState({
@@ -29,7 +30,6 @@ function App() {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -41,6 +41,24 @@ function App() {
       setFormData({ name: '', email: '', asalInstansi: '', testimoni: '', photo:'' });
     } catch (error) {
       console.error('Error creating testimonial:', error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`https://647ed0d7c246f166da8f68b6.mockapi.io/testi/${id}`);
+      setTestimonials((prevTestimonials) => prevTestimonials.filter((testimonial) => testimonial.id !== id));
+    } catch (error) {
+      console.error('Error deleting testimonial:', error);
+    }
+  };
+
+  const handleUpdate = async (id) => {
+    try {
+      await axios.put(`https://647ed0d7c246f166da8f68b6.mockapi.io/testi/${id}`);
+      setTestimonials((prevTestimonials) => prevTestimonials.filter((testimonial) => testimonial.id !== id));
+    } catch (error) {
+      console.error('Error updating testimonial:', error);
     }
   };
 
@@ -77,6 +95,7 @@ function App() {
           <table className="table">
             <thead>
               <tr>
+                <th scope="col">Aksi</th>
                 <th scope="col">Nama</th>
                 <th scope="col">Email</th>
                 <th scope="col">Asal Instansi</th>
@@ -87,6 +106,10 @@ function App() {
             <tbody>
               {testimonials.map((testimonial, index) => (
                 <tr key={index}>
+                  <td>
+                    <button className="btn btn-danger" onClick={() => handleDelete(testimonial.id)}>Delete</button>
+                    <button className="btn btn-success" onClick={() => handleUpdate(testimonial.id)}>Update</button>
+                  </td>
                   <td>{testimonial.name}</td>
                   <td>{testimonial.email}</td>
                   <td>{testimonial.asalInstansi}</td>
